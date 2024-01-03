@@ -13,7 +13,7 @@ function Logo() {
         size: "lg",
       })}
     >
-      <Instagram className="h-6 w-6 shrink-0 lg:hidden" />
+      <Instagram className=" h-6 w-6 shrink-0 lg:hidden" />
       <p className={`hidden text-xl font-semibold lg:block `}>PixelPeak</p>
     </Link>
   );
