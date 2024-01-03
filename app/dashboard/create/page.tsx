@@ -19,10 +19,12 @@ import {
 import { Input } from "@/components/ui/input";
 import useMount from "@/hooks/useMount";
 import { CreatePost } from "@/lib/schemas";
+import { UploadButton } from "@/lib/uploadthing";
 import { zodResolver } from "@hookform/resolvers/zod";
 import Image from "next/image";
 import { usePathname, useRouter } from "next/navigation";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 import { z } from "zod";
 function CreatePage() {
   const pathname = usePathname();
@@ -75,17 +77,17 @@ function CreatePage() {
                     <FormItem>
                       <FormLabel htmlFor="picture">Picture</FormLabel>
                       <FormControl>
-                        {/* <UploadButton
-                        endpoint="imageUploader"
+                        <UploadButton
+                          endpoint="imageUploader"
                           onClientUploadComplete={(res) => {
-                          form.setValue("fileUrl",res[0].url)
-                          toast.success("Upload complete")
+                            form.setValue("fileUrl", res[0].url);
+                            toast.success("Upload complete");
                           }}
                           onUploadError={(error: Error) => {
                             console.error(error);
-                            toast.error("Upload failed")
+                            toast.error("Upload failed");
                           }}
-                        /> */}
+                        />
                       </FormControl>
                       <FormDescription>
                         Upload a picture to post
