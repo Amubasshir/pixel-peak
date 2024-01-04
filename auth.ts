@@ -5,7 +5,7 @@ import {
   NextApiRequest,
   NextApiResponse,
 } from "next";
-import NextAuth, { NextAuthOptions, getServerSession } from "next-auth";
+import NextAuth, { getServerSession, type NextAuthOptions } from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 
 export const config = {
