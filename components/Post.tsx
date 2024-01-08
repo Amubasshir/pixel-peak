@@ -4,7 +4,11 @@ import PostOptions from "./PostOptions";
 import Timestamp from "./Timestamp";
 import UserAvatar from "./UserAvatar";
 
-async function Post({ post }: { post: PostWithExtras }) {
+interface PostProps {
+  post: PostWithExtras;
+}
+
+async function Post({ post }: PostProps) {
   const session = await auth();
   const userId = session?.user?.id;
   const username = post.user.username;
@@ -25,11 +29,11 @@ async function Post({ post }: { post: PostWithExtras }) {
               <Timestamp createdAt={post.createdAt} />
             </p>
             <p className="text-sm font-medium text-black dark:text-white">
-              Sydney,Australia
+              Sydney, Australia
             </p>
           </div>
         </div>
-        <PostOptions />
+        <PostOptions post={post} userId={userId} />
       </div>
     </div>
   );
