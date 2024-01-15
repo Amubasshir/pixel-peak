@@ -1,8 +1,12 @@
 import { auth } from "@/auth";
 import { PostWithExtras } from "@/lib/definitions";
+import Image from "next/image";
+import Link from "next/link";
+import PostActions from "./PostActions";
 import PostOptions from "./PostOptions";
 import Timestamp from "./Timestamp";
 import UserAvatar from "./UserAvatar";
+import { Card } from "./ui/card";
 
 interface PostProps {
   post: PostWithExtras;
@@ -14,6 +18,11 @@ async function Post({ post }: PostProps) {
   const username = post.user.username;
 
   if (!session?.user) return null;
+
+  function getFirstName(fullName: string) {
+    const names = fullName.split(" ");
+    return names[0];
+  }
 
   return (
     <div className="flex flex-col space-y-2.5">
@@ -35,6 +44,33 @@ async function Post({ post }: PostProps) {
         </div>
         <PostOptions post={post} userId={userId} />
       </div>
+      <Card className="relative h-[450px] w-full overflow-hidden rounded-none sm:rounded-md">
+        <Image
+          src={post.fileUrl}
+          alt="Post Image"
+          fill
+          className="object-cover sm:rounded-md"
+        />
+      </Card>
+      <PostActions post={post} userId={userId} className="px-3 sm:px-0" />
+      {post.caption && (
+        <div className="flex items-center space-x-2 px-3 text-sm font-medium leading-none sm:px-0">
+          {username ? (
+            <Link href={`/dashboard/${username}`} className="font-bold">
+              {getFirstName(username)}
+            </Link>
+          ) : (
+            <span className="font-bold">Unknown User</span>
+          )}
+          <p className="text-gray-400">{post.caption}</p>
+        </div>
+      )}
+
+      {/* <Comments
+      postId={post.id}
+        comments={post.comments}
+        user={session.user}
+      /> */}
     </div>
   );
 }
