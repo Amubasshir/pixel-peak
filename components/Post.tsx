@@ -2,6 +2,7 @@ import { auth } from "@/auth";
 import { PostWithExtras } from "@/lib/definitions";
 import Image from "next/image";
 import Link from "next/link";
+import Comments from "./Comments";
 import PostActions from "./PostActions";
 import PostOptions from "./PostOptions";
 import Timestamp from "./Timestamp";
@@ -66,11 +67,7 @@ async function Post({ post }: PostProps) {
         </div>
       )}
 
-      {/* <Comments
-      postId={post.id}
-        comments={post.comments}
-        user={session.user}
-      /> */}
+      <Comments postId={post.id} comments={post.comments} user={session.user} />
     </div>
   );
 }
