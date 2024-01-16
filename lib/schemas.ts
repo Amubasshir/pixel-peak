@@ -13,3 +13,7 @@ export const DeletePost = PostSchema.pick({ id: true });
 export const LikeSchema = z.object({
   postId: string(),
 });
+
+export const bookmarkSchema = z.object({
+  postId: string(),
+});
